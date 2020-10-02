@@ -1,0 +1,128 @@
+{extends profileLayout.latte}
+{block title}{$info['first_name']} {$info['last_name']}{/block}
+{block body}
+
+<div id="block" class="container">
+  <div class="row d-flex justify-content-center"> 
+    <div id="infoSection" class="col-sm-5 form-group">
+
+        <a id="actionButtonRight" href="{link person_Delete}?id_person={$info['personal_id']}" onclick="return confirm('Delete person?')">
+      	  <span title="Delete Person" id="actionButton">
+      	    <i class="fas fa-lg fa-times-circle"></i>
+      	  </span>
+        </a>
+
+        <a id="actionButtonRight" href="{link person_Update}?id_person={$info['personal_id']}">
+      	  <span title="Edit Person" id="actionButton">
+      	    <i class="fas fa-lg fa-pencil-alt"></i>
+      	  </span>
+        </a>
+
+      	<h2>Person</h2> 
+      	<span id="infoKey">First Name: </span><span id="infoValue">&nbsp{$info['first_name']}</span>
+      	<span id="infoKey">Last Name:  </span><span id="infoValue">&nbsp{$info['last_name']}</span>
+      	<span id="infoKey">Nickname:   </span><span id="infoValue">&nbsp{$info['nickname']}</span>
+      	<span id="infoKey">Gender:     </span><span id="infoValue">&nbsp{$info['gender']}</span>
+      	<span id="infoKey">Birth Day:  </span><span id="infoValue">&nbsp{$info['birth_day']|date:'%d.%m.%Y'}</span>
+      	<span id="infoKey">Age:        </span><span id="infoValue">&nbsp{if $info['birth_day']!=""}{$date-$info['birth_day']}{/if}</span>
+      	<span id="infoKey">Height:     </span><span id="infoValue">&nbsp{$info['height']}</span>
+    </div>
+	
+    <div id="infoSection" class="col-sm-5 form-group">        
+        {if $info[id_location] != ""}
+      	  <a id="actionButtonRight" href="{link detach_Location}?id_person={$info['personal_id']}" onclick="return confirm('Detach location?')">
+      	    <span title="Detach Location" id="actionButton">
+      	      <i class="fas fa-lg fa-times-circle"></i>
+      	    </span>
+          </a>
+	      {else}
+      	  <div id="actionButtonRight">
+        	    <span title="Unvaliable" id="actionButton">
+        	      <i class="fas fa-lg fa-times-circle unvaliable"></i>
+        	    </span>
+          </div>
+	      {/if}
+
+        {if $info[id_location] != ""}
+        <a id="actionButtonRight" href="{link location_Update}?id_location={$info['id_location']}">
+      	  <span title="Edit Location" id="actionButton">
+      	    <i class="fas fa-lg fa-pencil-alt"></i>
+      	  </span>
+        </a>
+        {else}
+          <div id="actionButtonRight">
+        	    <span title="Unvaliable" id="actionButton">
+        	      <i class="fas fa-lg fa-pencil-alt unvaliable"></i>
+        	    </span>
+          </div>
+	      {/if}
+  
+        {if $info[id_location] == ""}
+      	  <a id="actionButtonRight" href="{link attach_Location}?id_person={$info['personal_id']}">
+      	    <span title="Attach Location" id="actionButton">
+      	      <i class="fas fa-lg fa-plus"></i>
+      	    </span>
+          </a>
+	      {else}
+      	  <div id="actionButtonRight">
+        	    <span title="Unvaliable" id="actionButton">
+        	      <i class="fas fa-lg fa-plus unvaliable"></i>
+        	    </span>
+          </div>
+	      {/if}
+
+	<h2>Location</h2>
+	{if $info['id_location'] != null}
+	<span id="infoKey">Country:      </span><span id="infoValue">&nbsp{$info['country']}</span>
+	<span id="infoKey">City:         </span><span id="infoValue">&nbsp{$info['city']}</span>
+	<span id="infoKey">Street Name:  </span><span id="infoValue">&nbsp{$info['street_name']}</span>
+	<span id="infoKey">Street Num.:  </span><span id="infoValue">&nbsp{$info['street_number']}</span>
+	<span id="infoKey">Zip:          </span><span id="infoValue">&nbsp{$info['zip']}</span>
+	<span id="infoKey">Name:         </span><span id="infoValue">&nbsp{$info['location_name']}</span>
+	{else} No location assigned
+	{/if}
+    </div>	
+
+    <div id="infoSection" class="col-sm-5 form-group">
+        <a id="actionButtonRight" href="{link contact_Update}?id_person={$id_person}&first_name={$info['first_name']}">
+      	  <span title="Edit Contacts" id="actionButton">
+      	    <i class="fas fa-lg fa-pencil-alt"></i>
+      	  </span>
+        </a>
+
+      	<h2>Contacts</h2>
+      	{if $contacts}
+      	  {foreach $contacts as $c} 
+      	    <span id="infoKey">{$c['name']}:  </span><span id="infoValue">&nbsp{$c['contact']}</span>
+      	  {/foreach}
+      	{else} No contacts assigned
+      	{/if}
+    </div>
+
+    <div id="infoSection" class="col-sm-5 form-group">
+        <a id="actionButtonRight" href="{link relation_Update}?id_person={$id_person}&first_name={$info['first_name']}">
+	  <span title="Edit Relations" id="actionButton">
+	    <i class="fas fa-lg fa-pencil-alt"></i>
+	  </span>
+        </a>
+
+	<h2>Relations</h2>
+	{if $relations}  
+	  {foreach $relations as $r} 
+	    <span id="infoKey">&nbsp{$r['name']}: </span>
+	    <span id="infoValue">
+    		<a href="{link profile}?id_person={$r['id_person']}">
+    		  &nbsp<u>{$r['first_name']}
+    		  {$r['last_name']}</u>
+    		</a>
+        {if $r['description']}<i title="{$r['description']}" class="fas fa-comment-dots"></i>{/if}
+	    </span>
+	  {/foreach}
+	{else} No relations assigned
+	{/if}
+    </div>
+
+  </div>
+</div>
+
+{/block}

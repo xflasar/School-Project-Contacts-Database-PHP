@@ -1,0 +1,94 @@
+{extends layout.latte}
+
+{block title}Update Location{/block}
+
+
+{block body}
+<div class="container">
+    <h1>Location Update</h1>    
+</div>    
+
+
+
+<form method="post">
+  <div id="block" class="container">
+
+    <div class="row d-flex justify-content-center">
+
+        <div id="infoSection" class="col-sm-5 form-group">
+             <div class="col-sm-11 form-group">
+                <label for="country">Country</label>
+                <input class="form-control" type="text" name="country" placeholder="Country" value="{$formData['country']}">
+             </div>
+             
+             <div class="col-sm-11 form-group">
+                <label for="city">City</label>
+                <input class="form-control" type="text" name="city" placeholder="City" value="{$formData['city']}">
+             </div>
+                    
+             <div class="col-sm-11 form-group">
+                <label for="street_name">Street Name</label>
+                <input class="form-control" type="text" name="street_name" placeholder="Street Name" value="{$formData['street_name']}">
+             </div>
+             
+             <div class="col-sm-11 form-group">
+                <label for="street_number">Street Number</label>
+                <input class="form-control" type="number" name="street_number" placeholder="Street Number" value="{$formData['street_number']}">
+             </div>
+             
+             <div class="col-sm-11 form-group">
+                <label for="zip">Zip</label>
+                <input class="form-control" type="text" name="zip" placeholder="Zip" value="{$formData['zip']}">
+             </div>
+
+      	     <div class="col-sm-11 form-group">
+                      <label for="name">Place Name</label>
+                      <input class="form-control" type="text" name="name" placeholder="Place Name" value="{$formData['name']}">
+             </div>
+       
+             <div class="col-sm-11 form-group">
+                <label for="latitude">Latitude</label>
+                <input class="form-control" type="number" step="any" min="-90" max="90" name="latitude" placeholder="Latitude" value="{$formData['latitude']}">
+             </div>
+             
+             <div class="col-sm-11 form-group">
+                <label for="longitude">Longitude</label>
+                <input class="form-control" type="number" step="any" min="-180" max="180" name="longitude" placeholder="Longitude" value="{$formData['longitude']}">
+             </div>  
+             
+      </div>                        
+       
+        <div id="infoSection" class="col-sm-5 form-group">
+	<h2>
+	  {if $formData['city'] != null and $formData['street_name'] != null}{$formData['city']} - {$formData['street_name']}
+	  {elseif $formData['city'] != null}{$formData['city']}
+	  {elseif $formData['country'] != null}{$formData['country']}
+	  {elseif $formData['zip'] != null}{$formData['zip']}
+	  {elseif $formData['name'] != null}{$formData['name']}
+	  {else} Location
+	  {/if}
+	</h2>
+	<span id="infoKey">Country:       </span><span id="infoValue">&nbsp{$formData['country']}</span>
+	<span id="infoKey">City:          </span><span id="infoValue">&nbsp{$formData['city']}</span>
+	<span id="infoKey">Street name:   </span><span id="infoValue">&nbsp{$formData['street_name']}</span>
+	<span id="infoKey">Street num.:   </span><span id="infoValue">&nbsp{$formData['street_number']}</span>
+	<span id="infoKey">Zip:           </span><span id="infoValue">&nbsp{$formData['zip']}</span>
+	<span id="infoKey">Name:          </span><span id="infoValue">&nbsp{$formData['name']}</span>
+  <span id="infoKey">Latitude:      </span><span id="infoValue">&nbsp{$formData['latitude']}</span>
+  <span id="infoKey">Longitude:     </span><span id="infoValue">&nbsp{$formData['longitude']}</span>
+        </div>
+
+    </div>
+
+    <div class="buttonsDiv">
+      <a class="btn btn-outline-danger col-sm-3" href="{$basePath}">Cancel</a>   
+      {if $id_location != null}<a class="btn btn-outline-info col-sm-3" href="{link location_Info}?id_location={$id_location}">Show Location info</a>{/if}   
+      <button type="submit" class="btn btn-outline-success col-sm-3">Save</button>
+    </div>
+
+  </div>
+</form>
+
+ 
+
+{/block}

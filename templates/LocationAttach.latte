@@ -1,0 +1,64 @@
+{extends layout.latte}
+
+{block title}Attach location{/block}
+
+
+{block body}
+
+<form method="post">
+<div id="block" class="container">
+  <h1>Location attach</h1>   
+  <div class="row d-flex justify-content-center">
+	  <div id="infoSection" class="col-sm-5 form-group">
+	    <h2>Person</h2> 
+      	<span id="infoKey">First Name: </span><span id="infoValue">&nbsp{$info['first_name']}</span>
+      	<span id="infoKey">Last Name:  </span><span id="infoValue">&nbsp{$info['last_name']}</span>
+      	<span id="infoKey">Nickname:   </span><span id="infoValue">&nbsp{$info['nickname']}</span>
+      	<span id="infoKey">Gender:     </span><span id="infoValue">&nbsp{$info['gender']}</span>
+      	<span id="infoKey">Birth Day:  </span><span id="infoValue">&nbsp{$info['birth_day']|date:'%d.%m.%Y'}</span>
+      	<span id="infoKey">Age:        </span><span id="infoValue">&nbsp{if $info['birth_day']!=""}{$date-$info['birth_day']}{/if}</span>
+      	<span id="infoKey">Height:     </span><span id="infoValue">&nbsp{$info['height']}</span>
+        <div style="display:none">
+          <label for="id_person"></label>
+          <input type="number" name="id_person" value="{$id_person}">          
+        </div>
+    </div>
+
+  	<div id="infoSection" class="col-sm-5 form-group">
+      <h2>Location</h2>
+      <label for="id_location">Choose Location:</label>           
+      <select class="form-control" name="id_location" size="7" required>
+         {foreach $locations as $l}
+            {if $l['city']!=null and $l['street_number']!=null and $l['street_name']!=null}
+               <option value="{$l['id_location']}">{$l['city']}, {$l['street_name']}, {$l['street_number']}</option>
+            {elseif $l['city']!=null and $l['street_name']!=null}
+               <option value="{$l['id_location']}">{$l['city']}, {$l['street_name']}</option>
+            {elseif $l['city']!=null and $l['street_number']!=null}   
+               <option value="{$l['id_location']}">{$l['city']}, {$l['street_number']}</option>
+            {elseif $l['city']!=null}   
+               <option value="{$l['id_location']}">{$l['city']}</option>
+            {elseif $l['country']!=null}   
+               <option value="{$l['id_location']}">{$l['country']}</option>
+            {elseif $l['zip']!=null}   
+               <option value="{$l['id_location']}">{$l['zip']}</option>
+            {elseif $l['name']!=null}
+               <option value="{$l['id_location']}">{$l['name']}</option> 
+            {else}
+               <option value="{$l['id_location']}">Location without atributes</option>                    
+            {/if}                                 
+         {/foreach}
+      </select>
+    </div>                   
+  </div>
+</div>
+    
+<div class="buttonsDiv">
+    <button type="submit" class="btn btn-outline-success col-sm-2">Attach Location</button>     
+</div>
+</form>
+ 
+<div class="buttonsDiv">
+    <a href="{link profile}?id_person={$id_person}"><button class="btn btn-outline-danger col-sm-2">Cancel</button></a>
+</div>
+
+{/block}

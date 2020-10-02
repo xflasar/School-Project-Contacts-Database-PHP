@@ -1,0 +1,73 @@
+/*
+  place custom CSS definitions into this file to override Bootstrap
+*/
+#infoSection {
+    font-size: 18px;
+    background-color: rgb(150,150,150,0.1);
+    margin: 5px;
+    padding: 20px;
+    padding-left: 40px;
+}
+
+#infoSection a {
+    text-decoration: none;
+    color: black
+}
+
+        #infoSection a:hover {
+            color: purple
+        }
+
+#infoKey {
+    width: 30%;
+    float: left
+}
+
+#infoValue {
+    width: 70%;
+    float: left;
+}
+.container h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    font-size: 55px;
+}
+.container {
+    padding-top: 30px;
+}
+
+/* Buttons..*/
+.btn-success {
+}
+
+.btn-info {
+}
+
+.btn-warning {
+}
+
+.btn-danger {
+}
+
+.btn-grey {
+    background-color: grey;
+    color: white
+}
+
+.save {
+    float: right;
+    margin-right: 95px
+}
+
+.unvaliable {
+    color: rgb(180,180,180);
+    cursor: default !important;
+}
+
+.buttonsDiv {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+

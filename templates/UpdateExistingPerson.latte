@@ -1,0 +1,77 @@
+{extends layout.latte}
+
+{block title}Update Person{/block}
+
+
+{block body}
+<div class="container">
+    <h1>Person Update</h1>    
+</div>    
+
+
+<form method="post">
+  <div id="block" class="container">
+    
+      <div class="row d-flex justify-content-center">
+
+	<div id="infoSection" class="col-sm-5 form-group">
+             <div class="col-sm-11 form-group">
+                <label for="first_name">First name *</label>
+                <input class="form-control" type="text" name="first_name" placeholder="First name" required value="{$formData['first_name']}">
+             </div>
+             
+             <div class="col-sm-11 form-group">
+                <label for="last_name">Last name *</label>
+                <input class="form-control" type="text" name="last_name" placeholder="Last name" required value="{$formData['last_name']}">
+             </div>
+             
+             <div class="col-sm-11 form-group">
+                <label for="nickname">Nickname *</label>
+                <input class="form-control" type="text" name="nickname" placeholder="Nickname" required value="{$formData['nickname']}">
+             </div>
+                
+             <div class="col-sm-11 form-group">
+                <label for="height">Height</label>
+                <input class="form-control" type="number" name="height" placeholder="Height" value="{$formData['height']}">
+             </div>
+             
+             <div class="col-sm-11 form-group">
+                <label for="gender">Gender</label>
+                <select class="form-control" name="gender">
+		                <option value="" {if $formData['gender']==''}selected{/if}></option>
+                    <option value="female" {if $formData['gender']=='female'}selected{/if}>Female</option>
+                    <option value="male"{if $formData['gender']=='male'}selected{/if}>Male</option>
+                </select>                              
+             </div>
+             
+             <div class="col-sm-11 form-group">
+                <label for="birth_day">Birthday</label>
+                <input class="form-control" type="date" name="birth_day" placeholder="Date of birth" value="{$formData['birth_day']}">
+             </div>
+        </div>
+       
+	<div id="infoSection" class="col-sm-5 form-group">
+	  <h2>{$formData['first_name']} {$formData['last_name']}</h2>
+	  <br>
+ 	  <span id="infoKey">First Name: </span><span id="infoValue">&nbsp{$formData['first_name']}</span>
+	  <span id="infoKey">Last Name:  </span><span id="infoValue">&nbsp{$formData['last_name']}</span>
+	  <span id="infoKey">Nickname:   </span><span id="infoValue">&nbsp{$formData['nickname']}</span>
+	  <span id="infoKey">Gender:     </span><span id="infoValue">&nbsp{$formData['gender']}</span>
+	  <span id="infoKey">Birth Day:  </span><span id="infoValue">&nbsp{$formData['birth_day']|date:'%d.%m.%Y'}</span>
+	  <span id="infoKey">Age:        </span><span id="infoValue">&nbsp{if $formData['birth_day']!=""}{$date-$formData['birth_day']}{/if}</span>
+	  <span id="infoKey">Height:     </span><span id="infoValue">&nbsp{$formData['height']}</span>
+        </div>
+
+    </div>
+ 
+    <div class="buttonsDiv">
+    	<a class="btn btn-outline-danger col-sm-3" href="{link profile}?id_person={$id_person}">Cancel</a>      
+    	<a class="btn btn-outline-info col-sm-3" href="{link profile}?id_person={$id_person}">Show {$formData['first_name']}</a>      
+    	<button type="submit" class="btn btn-outline-success col-sm-3">Save</button>
+    </div>
+
+  </div>
+</form>
+
+
+{/block}

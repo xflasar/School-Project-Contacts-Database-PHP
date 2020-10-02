@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <title>{include title}</title>
+    {block head}{/block}
+    <link rel="stylesheet" href="{$basePath}/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{$basePath}/css/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="{$basePath}/css/homepageStyle.css">
+    <link rel="stylesheet" href="{$basePath}/css/custom.css">
+    <script type="text/javascript" src="{$basePath}/js/jquery.js"></script>
+    <script type="text/javascript" src="{$basePath}/css/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    {ifset meta}{include meta}{/ifset}
+    <script type="text/javascript">
+
+    $(function()
+    {
+        // this will let use buttons inside clickable tr elements of the table
+        $('.buttonTable').click(function (e) {
+            e.stopPropagation();
+        });
+    });
+
+</script>
+</head>
+<body>
+        <!-- Top navigation menu-->
+    <div>
+
+        <div class="HeadNav" role="Banner">
+            <div id="nav_logo">
+                <div>
+                    <div class="nav_logo2">
+                        <div class="nav_logo3">
+                            <h2>APV Project</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="nav_header">
+                <div class="nav_header2">
+                    <div class="nav_header3">
+                        <div class="nav_header4">
+                            <div class="navigation_buttons">
+                                <ul class="nav_links">
+                                    <li><a href="{$basePath}">Home</a></li>
+                                    <li><a href="{link NewPerson}">Add new person</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="underNav"></div>
+            </div>
+            <div id="nav_right">
+                    <img id="profilePic" src="Resources/images/profilePic.png" width="60" height="60" />
+                </div>
+        </div>
+    </div>
+{block body}{/block}
+<div style="font-size:12px;width:auto;height:auto;color:white;justify-content:center;position:fixed;bottom:0;"><span>Created by Martin Flasar @ 2020</span></div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{extends layout.latte}
+
+{block title}Persons Info{/block}
+
+{block body}
+
+<div class="introduction">
+  <i class="far fa-3x fa-sad-tear"></i> 
+	<h1>Whoops, Something went wrong!</h1>
+  <h3>Please, try it again and make sure you typed valid data,</h3>
+  <h3>in case of operation error try to reload the page</h3></div>
+  <h5>{if isset($err)} {$err}{/if}</h5>          
+{/block}

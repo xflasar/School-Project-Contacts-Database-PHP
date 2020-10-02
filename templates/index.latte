@@ -1,0 +1,49 @@
+{layout 'layout.latte'}
+
+{block title}Homepage{/block}
+
+{block body}
+<div class="Banner2">
+            <div class="Banner2_1">
+                <div class="Banner2_2">
+                    <div class="Banner2_3">
+                        <div class="Banner2_4">
+                            <div class="Banner2_5">
+                                <!--Middle One-->
+								<div class='Banner2_middleBar'>
+								    <table class='Banner2_middleBar_table1 table1'>
+								    <thead>
+                                        <tr>
+                                            <th>First name</th>
+                                            <th>Last name</th>
+  	                                        <th>Nickname</th>
+                                            <th>Gender</th>
+  	                                        <th>Age</th>
+  	                                        <th>Address</th>
+                                            <th style="text-align:center;">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <!-- Is it possible to make the onclick="" not show inside inspect? or is it bad if it's shown how to make it more optimize -->
+                                    {foreach $osoby as $o}
+                                        <tr onclick="window.location='{link profile}?id_person={$o['id_person']}';">
+                                            <td>{$o['first_name']}</td>
+                                            <td>{$o['last_name']}</td>
+                                            <td>{$o['nickname']}</td>
+                                            <td>{$o['gender']}</td>
+                                            <td>{if $o['birth_day']!=""}{$date-$o['birth_day']}{else}Not Defined{/if}</td>
+                                            <td>{if $o['city']!=""}{$o['street_name']} {$o['street_number']}, {$o['city']}{else}Not Defined{/if}</td>
+                                            <td><button class="buttonTable" onclick="location.href='{link person_Update}?id_person={$o['id_person']}'">Edit</button>
+                                                <button class="buttonTable" style="background-color:red;" onclick="location.href='{link person_Delete}?id_person={$o['id_person']}'" >Remove</button>
+                                            </td>
+                                        </tr>
+                                    {/foreach}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{/block}

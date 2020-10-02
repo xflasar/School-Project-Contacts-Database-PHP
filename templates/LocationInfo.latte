@@ -1,0 +1,47 @@
+{extends layout.latte}
+
+{block title}Location Info{/block}
+
+{block body}
+
+<div id="block" class="container">
+    <h1>
+    	{if $info['city'] != null and $info['street_name'] != null}{$info['city']} - {$info['street_name']}
+    	{elseif $info['city'] != null}{$info['city']}
+    	{elseif $info['country'] != null}{$info['country']}
+    	{elseif $info['zip'] != null}{$info['zip']}
+    	{elseif $info['name'] != null}{$info['name']}
+    	{else} Location
+    	{/if}
+    </h1>
+
+  <div class="row d-flex justify-content-center"> 
+    <div id="infoSection" class="col-sm-5 form-group">
+    
+        <a id="actionButtonRight" href="{link location_Delete}?id_location={$id_location}" onclick="return confirm('Delete location?')">
+      	  <span title="Delete Location" id="actionButton">
+      	    <i class="fas fa-lg fa-times-circle"></i>
+      	  </span>
+        </a>
+        
+      	<a id="actionButtonRight" href="{link location_Update}?id_location={$info['alias_id_location']}">
+         <span title="Edit Location" id="actionButton">
+      	  <i class="fas fa-lg fa-pencil-alt"></i>  
+         </span>
+      	</a>
+
+	<h2>Location</h2>
+	<span id="infoKey">Country:       </span><span id="infoValue">&nbsp{$info['country']}</span>
+	<span id="infoKey">City:          </span><span id="infoValue">&nbsp{$info['city']}</span>
+	<span id="infoKey">Street name:   </span><span id="infoValue">&nbsp{$info['street_name']}</span>
+	<span id="infoKey">Street num.:   </span><span id="infoValue">&nbsp{$info['street_number']}</span>
+	<span id="infoKey">Zip:           </span><span id="infoValue">&nbsp{$info['zip']}</span>
+	<span id="infoKey">Name:          </span><span id="infoValue">&nbsp{$info['name']}</span>
+  <span id="infoKey">Latitude:      </span><span id="infoValue">&nbsp{$info['latitude']}</span>
+  <span id="infoKey">Longitude:     </span><span id="infoValue">&nbsp{$info['longitude']}</span>
+    </div>
+	
+    
+  </div>
+</div>
+{/block}

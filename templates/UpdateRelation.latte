@@ -1,0 +1,83 @@
+{extends layout.latte}
+
+{block title}Relation update{/block}
+
+
+{block body}
+
+<div id="block" class="container">
+  <h1>Relations update</h1>   
+  <div class="row d-flex justify-content-center"> 
+
+      <div id="infoSection" class="col-sm-5 form-group">
+        <form method="post">
+
+                <div class="form-row">
+                   <label id="infoKey" for="id_person2">Person: </label>
+                   <div id="infoValue" class="col-sm-7">
+                     <select class="form-control form-control-sm" name="id_person2">
+                        {foreach $persons as $p}
+			                   <option value="{$p['id_person']}">{$p['first_name']} '{$p['nickname']}' {$p['last_name']}</option>
+			                  {/foreach}
+                      </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                   <label id="infoKey" for="id_relation_type">Relation: </label>
+                   <div id="infoValue" class="col-sm-7">
+                     <select class="form-control form-control-sm" name="id_relation_type">
+                        <option value="1">Friend</option>
+                        <option value="2">Enemy</option>
+                        <option value="3">Partner</option>
+                        <option value="4">Colleague</option>
+                        <option value="5">Acquaintance</option>
+                        <option value="6">Lover</option>
+                        <option value="7">Family</option>
+                        <option value="8">Spouse</option>
+                      </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                   <label id="infoKey" for="description">Description: </label>
+                   <div id="infoValue" class="col-sm-7">
+                     <input class="form-control form-control-sm" type="text" name="description">
+                   </div>
+                </div>
+                
+                <button type="submit" class="btn btn-outline-success col-sm-7 save">Add Relation</button>
+        </form>
+      </div>
+
+
+      <div id="infoSection" class="col-sm-5 form-group">
+        	<h2>{$first_name}</h2>
+        	  {if $relations}  
+        	  {foreach $relations as $r} 
+        	    <span id="infoKey">&nbsp{$r['name']}: </span>
+        	    <span id="infoValue">
+              		<a target="_blank" href="{link profile}?id_person={$r['id_person']}">
+              		  &nbsp<u>{$r['first_name']} '{$r['nickname']}'
+              		  {$r['last_name']}</u>
+              		</a>
+                  {if $r['description']}<i title="{$r['description']}" class="fas fa-comment-dots"></i>{/if}
+              		<a id="actionButtonRight" class=" actionButton" 
+              		   href="{link delete_Relation}?id_relation={$r['id_relation']}&id_person={$id_person}&first_name={$first_name}" 
+              		   onclick="return confirm('Delete relation?')"><i class="fas fa-times-circle"></i>
+              		</a>
+        	    </span>
+          	{/foreach}
+          	{else} No relations assigned
+          	{/if}
+      </div>
+
+  </div>
+
+  <div class="buttonsDiv">
+    <a class="btn btn-outline-info col-sm-3" href="{link profile}?id_person={$id_person}">Show {$first_name}</a>      
+  </div>
+
+</div>
+
+{/block}
