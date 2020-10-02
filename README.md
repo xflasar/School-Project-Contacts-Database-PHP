@@ -1,5 +1,10 @@
 # APV project
 
+# Preview of project
+![Homepage](/GIT Images/Homepage.png)
+![Profile](/GIT Images/Profile.png)
+![New Person](/GIT Images/NewPerson.png)
+
 ## Links
 - [Website of course and walkthrough](http://akela.mendelu.cz/~lysek/tmwa/)
 - [Slim framework docs](https://www.slimframework.com/docs/)
