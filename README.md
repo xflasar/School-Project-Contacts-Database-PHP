@@ -1,9 +1,9 @@
 # APV project
 
 # Preview of project
-![Homepage](School-Project-Contacts-Database-PHP/GIT Images/Homepage.png)
-![Profile](School-Project-Contacts-Database-PHP/GIT Images/Profile.png)
-![New Person](School-Project-Contacts-Database-PHP/GIT Images/GIT Images/NewPerson.png)
+![Homepage](/GIT_Images/Homepage.png)
+![Profile](/GIT_Images/Profile.png)
+![New Person](/GIT_Images/NewPerson.png)
 
 ## Links
 - [Website of course and walkthrough](http://akela.mendelu.cz/~lysek/tmwa/)
